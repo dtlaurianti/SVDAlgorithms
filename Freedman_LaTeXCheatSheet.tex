@@ -1,0 +1,210 @@
+%This is a comment.  It will not appear in the compiled file.
+
+\documentclass[10pt]{article}
+
+\usepackage[normalem]{ulem}
+
+\title{A Super Brief, Yet Super Awesome, LaTeX Cheat Sheet}
+\author{Richard (Rick) G. Freedman, \sout{Wake Forest University} University of Massachusetts Amherst\\Philip (Phil) Thomas, University of Massachusetts Amherst}
+\date{\sout{6 February 2011} 14 June 2013}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{A Brief Introduction\label{intro}}
+LaTeX is a programming language that can be used for writing documents.  It is especially useful for the mathematics and sciences fields due to its ease of writing special symbols and equations while also making them look good.  Most textbooks are actually written in LaTeX.  Due to the programming aspect, writing documents in LaTeX allows a lot more freedom to format how the document should look.  However, it is important to learn how these formatting techniques function in order to know what to expect (did you notice how Rick's school affilitation goes off the page?).
+\par
+In this cheat sheet, we discuss some of the basics for writing documents in LaTeX.  We hope it can help you get started with learning this useful language - LaTeX will make writing homework assignments, publications, posters, and many other documents far easier.  For additional practice, the actual .tex file is included for you to see what we did.  Feel free to modify it and see how your changes affect this document.
+\subsection{What You Will Need to Get Started\label{gettingStarted}}
+In order to write documents in LaTeX, you will need to download the standard LaTeX packages and compilers.  There are a lot of packages and several compilers, and we barely scratch the surface about a few of them in Sections~\ref{packages} and~\ref{howRickCompiles}.  Don't worry about finding all of them scattered across the internet; the essentials can all be found in one place.  For Windows users, we suggest downloading MikTex.  For Linux (and other *nix) users, we highly recommend TexLive.  You can write your code in any text editor as well as any LaTeX IDE.  Many of them are out there for free; so play with them and find what you like.  We personally use TexMaker.
+\section{Special Symbols and Their Uses\label{specialSymbols}}
+To write a comment like the one at the top of the .tex file, use the percent sign (\%).  To place symbols like the percent sign into the compiled paper, use the escape character before the symbol (it is the forward slash ($ \setminus $) found above the ENTER key on the keyboard).
+\par
+In fact, the escape character is used to begin any command in LaTeX.  For example, to start this new paragraph, the command $ \setminus $par was written.  However, if you looked at the .tex file itself, you would see that we are writing the escape character for the compiled paper as \$ $ \setminus $setminus \$.  This is because two escapes characters in a row indicates a line break \\ that forces us onto the next line as just happened here.  However, most journals request that the command $ \setminus $newline is used instead as done \newline here.  They look similar in this document, but a journal's style file can modify how the $ \setminus $newline command looks.  The two escape character version is unmodifiable.
+\par
+So the next question is probably ``Why the dollar signs (\$)?"  They place us into a special thing called ``Math Mode."  We will explain it later, but it is good to know that the dollar sign is also a special symbol.  Other special symbols are the curly braces (\{ and \}) which contain parameters for commands, tilde ($ \sim $) which generates a unit of whitespace that cannot be broken between two lines for word wrapping, carrot (\^) which is used for superscripting in math mode, and underscore (\_) which is used for subscripting in math mode.  The ampersand (\&) and pound (\#) are also special symbols, but their uses vary by the context of the document.  Just remember to escape these characters (or use \$ $ \setminus $sim \$ for the tilde) when trying to print them in the document; we have done so in the .tex file if you read this paragraph.
+
+\section{Formatting Commands\label{formattingCmds}}
+Many commands in LaTeX will format the compiled paper.  In order to understand what is formatted, it is usually bounded in some way just as Math Mode applies to anything between two dollar signs.  In particular, there are two ways formatting is done:
+\subsection{In-Line Formatting Commands\label{inlineFormatCmds}}
+These format only a little bit of text at a time.  Because they only affect a small amount of text, these commands are a single command that receives the text in curly braces (\{ and \}) afterwards.  Some important examples we will use are below.  To show what they do, the actual command is used on the text in curly braces.
+\begin{itemize}
+\item $ \setminus $textbf\{\textbf{Text to write in bold}\}
+\item $ \setminus $textit\{\textit{Text to write in italics}\}
+\item $ \setminus $underline\{\underline{Text to underline}\}
+\item $ \setminus $sout\{\sout{Text to strike out}\} You will need to use the \textit{ulem} package (see Section~\ref{packages})
+\item $ \setminus $textsc\{\textsc{Text to write in all capital letters without `shouting'}\}
+\end{itemize}
+Best of all, these can be placed within each other (like nested blocks of code).  \textbf{\textit{\underline{That is why this sentence is written in bold, italics, and underlined!}}}
+\subsection{$ \setminus $begin...$ \setminus $end Formatting Commands (Also Called \textit{Environments})\label{envFormattingCmds}}
+When a large amount of text is formatted at one time with a command, it is easier to not have to contain it within brackets.  This is why some formatting commands have two pairs of commands: $ \setminus $begin\{format command\} and $ \setminus $end\{format command\}.  Think of them as the left and right curly braces of the in-line formatting commands.  Anything between a $ \setminus $begin and $ \setminus $end with the same format command will be formatted.  Some examples include:
+\begin{center}
+\{center\} centers the text
+\end{center}
+\begin{flushright}
+\{flushright\} moves the text to the right side
+\end{flushright}
+\begin{flushleft}
+\{flushleft\} moves the text to the left side
+\end{flushleft}
+\begin{verbatim}
+\{verbatim\} types everything character for character, including commands.  
+This is great for typing program code since there are so many special symbols 
+that would have been escaped.  Notice that we should not have escaped the curly 
+braces around the word `verbatim' and been more careful with margins.
+\end{verbatim}
+\begin{tiny}
+\{tiny\} shrinks the font to a really small size
+\end{tiny}
+\begin{huge}
+\{huge\} enlarges the font to a really large size
+\end{huge}
+
+Besides formatting commands, $ \setminus $begin and $ \setminus $end are used for special segments of the document as well.  These (which are far more useful) include:
+\begin{itemize}
+\item Creating lists.  Each entry is indicated by the $ \setminus $item command.  There are many types of lists including:
+\begin{enumerate}
+\item \{itemize\} Bulleted lists
+\item \{enumerate\} Numbered lists
+\item \{description\} Labelled lists where each item starts with an emphasized word provided in brackets like $ \setminus $item[word].  Here's a secret: the brackets after the command $ \setminus $item can be used for the other list environments.  Try them out and see how it looks different from the description environment.
+\end{enumerate}
+\item The paper itself is bounded between $ \setminus $begin\{document\} and $ \setminus $end\{document\} and \textsc{this is a required environment}
+\item \{tabular\} creates a table after providing a little more information.  We will briefly explain them in Section~\ref{tableTutorial}.
+\item \{displaymath\} will also put us in a special Math Mode that gets its own line that can present larger symbols.  For example, in-line Math Mode's sum symbol looks like $ \sum_{i = 0}^{n} f\left(i\right) $ while displaymath Math Mode's sum symbol looks less squished $$ \sum_{i = 0}^{n} f\left(i\right) $$ (the shortcut for the displaymath environment is two consecutive dollar signs \$\$ $\ldots$ \$\$ as seen in the .tex file).
+\end{itemize}
+The only warning with all these commands is that any $ \setminus $end must have the same command as the most recently unmatched $ \setminus $begin in the file.  This will line them up so that they match like the in-line brackets.
+
+\section{Math Mode Commands\label{mathModeCmds}}
+Anything between dollar signs \$ $ \ldots $ \$ is written in math mode.  It will accept many commands that are otherwise not available and formats the text to look ``mathy" (so sentences should not go here).  Since it is so straightforward, we will just list some commands used in Math Mode for common symbols:
+\begin{itemize}
+\item any text is $ any text $ (Note that spaces are ignored in Math Mode since text is assumed to be a string of variables)
+\item $ \setminus $leq is $ \leq $
+\item $ \setminus $geq is $ \geq $
+\item $ \setminus $neq is $ \neq $
+\item $ \setminus $(Greek letter) makes the Greek letter.  Capitalizing the first letter determines whether or not the Greek letter is capital.  For example, $ \setminus $Omega is $ \Omega $ and $ \setminus $alpha is $ \alpha $.  Not all of them are available, though.  Some have alternative designs such as $ \setminus $phi ($ \phi $) and $ \setminus $varphi ($ \varphi $)
+\item $ \setminus $in is $ \in $
+\item $ \setminus $subset is $ \subset $
+\item $ \setminus $subseteq is $ \subseteq $
+\item $ \setminus $cup is $ \cup $
+\item $ \setminus $cap is $ \cap $
+\item $ \setminus $vee is $ \vee $
+\item $ \setminus $wedge is $ \wedge $
+\item $ \setminus $neg is $ \neg $
+\item $ \setminus $ldots is $ \ldots $
+\item $ \setminus $cdots is $ \cdots $
+\item $ \setminus $cdot is $ \cdot $
+\item $ \setminus $infty is $ \infty $
+\item $ \setminus $sum is $ \sum $ (use superscript and subscript for indexing)
+\item $ \setminus $prod is $ \prod $ (use superscript and subscript for indexing)
+\item $ \setminus $int is $ \int $ (use superscript and subscript for limits of integration)
+\item $ \setminus $partial is $ \partial $
+\item $ \setminus $mid is $ \mid $
+\item $ \setminus $leftarrow is $ \leftarrow $ (guess what happens if you replace `left' with `up,' `down,' `right,' or `leftright')
+\item $ \setminus $Leftarrow is $ \Leftarrow $ (guess what happens if you replace `Left' with `Up,' `Down,' `Right,' or `Leftright')
+\item $ \setminus $; adds extra white space to better separate symbols
+\end{itemize}
+$ \setminus $not preceding another Math Mode command slashes through it to get things like `not divisible by:' $ \not\mid $.  Also, to help keep track of the left and right grouping symbols, $ \setminus $left and $ \setminus $right may precede parentheses, brackets, curly braces (which must be written as $ \setminus $leftbrace and $ \setminus $rightbrace), vertical bars (above the ENTER key), floor functions (written $ \setminus $lfloor and $ \setminus $rfloor), ceiling functions (written $ \setminus $lceil and $ \setminus $rceil), and period for nothing (which is useful in set notation, conditional probability, and piecewise functions).  Another benefit of $ \setminus $left and $ \setminus $right is that they adjust their size appropriately in the displaymath environment: compare $$ (a + \frac{b}{c}] \textnormal{ with } \left(a + \frac{b}{c}\right] $$ which also shows that the symbols do not need to match up.  This is the purpose of the period when only one symbol is needed on one side to scale in the displaymath environment.  The compiler will complain if the commands $ \setminus $left and $ \setminus $right do not match up correctly.
+\par
+There are also some in-line formatting commands for Math Mode.  The more useful ones are:
+\begin{itemize}
+\item \^\ \{The text to superscript such as 2 in $ x^{2} $\}
+\item \_\{The text to subscript such as 0 in $ x_{0} $\}
+\item $ \setminus $frac\{numerator\}\{denominator\} makes a fraction like $ \frac{x}{y} $ when given \{x\}\{y\}
+\item $ \setminus $textnormal\{any text\} will print the text as though Math Mode is not in use
+\end{itemize}
+Notice that the superscript and subscript commands DO NOT have an escape character in front of them!
+
+\section{Tables\label{tableTutorial}}
+To create a table, you will have an extra argument to give when defining $ \setminus $begin\{tabular\}\{layout\}.  The \textit{layout} argument will specify how many columns there are, where the text is placed in each column, and if a line separates the columns.  A layout example is \{$|$c$|$c$|$lr$|$c$|$c\} which will have 6 columns: a line of separation, a centered column, a line of separation, a centered column, a line of separation, a left column (no line of separation), a right column, a line of separation, a centered column, a line of separation, and a centered column (no line of separation).
+\par
+When filling in the table, each line is an individual row (columns are separated by ampersands (\&)) and they are separated by the $ \setminus\setminus $ line breaks.  To place a horizontal line of separtion, use the $ \setminus $hline command.  It may be good to look at the table below both in the compiled document and in the .tex file.  It will show the correlation between making the table and its code.  You will need to start it on a new line (we use $ \setminus $par to do it here).
+\par
+\begin{tabular}{|c|c|lr|c|c}
+\hline
+Hello & there & person & reading & this & ! \\
+\hline
+This column is & So is this & But here it is & And here it is & Now we are again & As we also are \\
+centered & one & left & right & centered & here \\
+\hline
+Above is & 2 columns. & But we did not & separate with & $ \setminus $hline!  How cool is & that?! \\
+\hline
+You can also & & have a blank & & column that is & empty \\
+\hline
+\end{tabular}
+We must be careful.  As seen above, the table can be made longer than the page.  This is when compiling and editing will become a trial and error task.  When in the displaymath environment (see Section~\ref{envFormattingCmds}), the environment name is changed from \textit{tabular} to \textit{array}, but everything else remains the same.
+
+\section{More Stuff\label{otherThings}}
+\subsection{Sections and Subsections\label{sectionInfo}}
+This whole document has been organized by ``chapters" that have their own numbers and titles.  They are generated by two particular commands:
+\begin{description}
+\item[$ \setminus $section\{title\}] These are the larger sections.  They have a single number and the title.  ``More Stuff" is a section.
+\item[$ \setminus $subsection\{title\}] These are the smaller sections within the section most recently declared in the .tex file.  They have two numbers separated by a period (.).  ``Sections and Subsections" is a subsection of ``More Stuff."
+\end{description}
+\subsection{To Make Quoted Text Look Good\label{quoteText}}
+LaTeX prints the quote symbols as " and '.  These only look good when placed at the end of the text.  To get good quotation marks at the beginning of the text, use the backtick ` located below the ESCAPE key on the keyboard.  `Thank you very much!'
+\subsection{Packages\label{packages}}
+Like in any programming language, other people have made things that can improve our coding lives.  Many of these packages already come with a standard LaTeX install (Miktex for Windows and TexLive for Linux), and other ones can be downloaded and placed in the same directory as the .tex file.  To use the package in a document, the command $ \setminus $usepackage\{packageName\} must appear after the $ \setminus $documentclass command.  Some packages have special parameters that appear in brackets before the package name.  Some common packages to include are:
+\begin{itemize}
+\item $ \setminus $usepackage\{amsmath\}, $ \setminus $usepackage\{amsfonts\}, and $ \setminus $usepackage\{amssymb\} form the set of AMS (American Mathematics Society) packages that the TexMaker IDE always suggests.  With these three packages, almost every math symbol is available.
+\item $ \setminus $usepackage[margin=XX]\{geometry\} can cheat the margins when you want to save trees or specify particular guidelines.  Replace XX with a floating-point number followed by a unit of measurement such as `in' or `cm' (no space between the number and unit).
+\item $ \setminus $usepackage\{graphicx\} allows graphics to be rendered in the document.  It is a necessary evil in LaTeX.
+\item $ \setminus $usepackage\{epsfig\} allows PostScript images to be rendered in the document.  It is a slightly less evil in LaTeX since the bounding boxes can be computed for you.
+\item $ \setminus $usepackage[normalem]\{ulem\} allows some other emphasis in-line formatting commands such as $ \setminus $sout.
+\end{itemize}
+\subsection{Other Useful Commands\label{usefulCmds}}
+Some commands for formatting look very different from traditional in-line formatting and environments.  In particular, they are constants whose values are set such as $ \setminus $parindent=XX for how much to indent paragraphs (with the $ \setminus $par command) and $ \setminus $parskip=XX for how much space to leave between consecutive paragraphs.  In both cases, XX is replaced with a floating point and unit as done for the geometry package (see Section~\ref{packages}).
+\par
+Also, some documents are better with a tabel of contents and title section (like this one).  The command $ \setminus $tableofcontents will generate a table of contents where the command is specified and $ \setminus $maketitle will generate a title section with a given title (use command $ \setminus $title\{title\} beforehand), authors (use command $ \setminus $author\{author(s)\} beforehand), and the date of compilation (unless the command $ \setminus $date\{date\} is specified beforehand).
+\par
+Footnotes can be made using the command $ \setminus $footnote\{Text to appear in footnote\}.  They are numbered in order and placed at the bottom of the page during compilation.  A variation of footnotes that is sometimes used for author information when generating the title section is the command $ \setminus $thanks\{Author Information\}.
+\subsection{References and Citations\label{references}}
+When revising a document, it can be common to reorder sections, figures, and tables as well as edit the bibliography.  Rather than have to change all the references and citations each time, LaTeX keeps track of them for you!  When creating a section or caption, include the command $ \setminus $label\{labelName\} before ending it (as we have done for all sections in the .tex file).  Then in the document, feel free to always write Section/Figure/Table$ \sim\setminus $ref\{labelName\} and the compiler will fill in the appropriate name in place of the $ \setminus $ref command.  The tilde ($ \sim $) is a special character that makes sure that the number is not separated from the word preceding it.  Likewise, the bibtex file's names for each bibliographic entry may be cited in this way in case the reference list changes.  Simply use the command $ \setminus $cite\{bibitemName\}.
+\subsection{Compiling via Command Line\label{howRickCompiles}}
+For Linux users who want to compile LaTeX documents without the IDE (especially if you code in a text editor instead), there are two paths to take depending on the file format of figures (if no images of either format, then both work).  If a compiler error occurs, the best thing to do is make the specified change (warning: LaTeX gives bad error messages) in the .tex file, type a capital `R' in the command line menu, and press ENTER; this terminates the compilation and spits out a lot of text, but avoiding the compiler's debug menu is worth it:
+\begin{description}
+\item[PostScript] (.eps and/or .ps) First, compile the .tex file with \textit{latex} in order to get a .dvi file.  If you have referenced sections, then a second compilation will be necessary due to the one-pass compiler missing the label of later sections:
+\begin{verbatim}
+> latex myfile.tex
+> #It doesn't hurt to compile again if there are references
+> latex myfile.tex
+\end{verbatim}
+If you have a bibtex file to also compile, then now is the time to synchronize them (since all the other steps convert the .dvi file).  When compiling, an auxiliary .aux file is generated that lists which references are cited in each .bib file (since that information is in the .tex file).  So synchronize the auxiliary file with the bibtex file:
+\begin{verbatim}
+> bibtex myfile.aux
+\end{verbatim}
+Now recompile the document \textsc{twice}.  The first time generates the bibliography section and a list of citation information (such as `Author Year'), and the second time fills in the $ \setminus $cite commands with this information obtained from the previous compilation.  Note that if the bibliography (not the in-text citations) changes, then synchronization needs to be done again by \textsc{deleting the auxiliary file} and then starting over the entire compilation process.
+\begin{verbatim}
+> latex myfile.tex
+> latex myfile.tex
+\end{verbatim}
+Second, convert the .dvi file into a .ps file using \textit{dvips} which is `dvi' followed by `ps:'
+\begin{verbatim}
+> dvips myfile.dvi
+\end{verbatim}
+Lastly, convert the .ps file into a .pdf file using \textit{ps2pdf}:
+\begin{verbatim}
+> ps2pdf myfile.ps
+\end{verbatim}
+The .pdf file is now ready, and the PostScript images are properly rendered.
+\item[PDF] First, compile the .tex file with \textit{pdflatex} in order to get a .pdf file.  If you have referenced sections, then a second compilation will be necessary due to the one-pass compiler missing the label of later sections:
+\begin{verbatim}
+> pdflatex myfile.tex
+> #It doesn't hurt to compile again if there are references
+> pdflatex myfile.tex
+\end{verbatim}
+If you have a bibtex file to also compile, then now is the time to synchronize them.  When compiling, an auxiliary .aux file is generated that lists which references are cited in each .bib file (since that information is in the .tex file).  So synchronize the auxiliary file with the bibtex file:
+\begin{verbatim}
+> bibtex myfile.aux
+\end{verbatim}
+Now recompile the document \textsc{twice}.  The first time generates the bibliography section and a list of citation information (such as `Author Year'), and the second time fills in the $ \setminus $cite commands with this information obtained from the previous compilation.  Note that if the bibliography (not the in-text citations) changes, then synchronization needs to be done again by \textsc{deleting the auxiliary file} and then starting over the entire compilation process.
+\begin{verbatim}
+> pdflatex myfile.tex
+> pdflatex myfile.tex
+\end{verbatim}
+The .pdf file is now ready with all PDF images included.
+\end{description}
+\subsection{This Is Only the Beginning\label{conclusion}}
+LaTeX can do far, far more than these things.  However, this should be enough to understand the basics.  We can discuss other commands if we need them later, but they will be similar in syntax to the commands discussed above.  Enjoy!  Happy LaTeX'ing!
+
+\end{document}

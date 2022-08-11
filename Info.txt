@@ -1,0 +1,8 @@
+The commonly accepted way to verify the correctness of the SVD decomposition is to compute the following numbers:
+
+||  A - U * SIGMA * transpose(V) ||/||A|| (or || A *V –  U * SIGMA ||  or || transpose(U)* A - SIGMA * transpose(V) ||/||A||   )
+|| transpose(U )*U – I || (this is called the measure of orthogonality)
+|| transpose(V )*V – I ||
+ 
+
+It is accepted that an SVD routine returns the correct output if  the values of these numbers are less than predefined thresholds set up with the help of theoretical error bounds (see the LAPACK Users’ Guide by E. Anderson, Z. Bai, C. Bischof, L. Blackford, J. Demmel, J. Dongarra, J. D. Croz, A. Greenbaum, S. Hammarling, A. McKenney, and D. Sorensen, SIAM, 1999 or visit netlib.org/lapack/lug/node97.html  for more details about error bounds).
